@@ -1,0 +1,23 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4A55DA5209A8B34D08EAC4DDF4293A30FF65C26B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4A55DA5209A8B34D08EAC4DDF4293A30FF65C26B" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6D6CAD7F-AEEB-4868-A2F8-4F00A2A51044",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4A55DA5209A8B34D08EAC4DDF4293A30FF65C26B" : "FRE7831_TeamProject\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Team_Project",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Team_Project\/Team_Project.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git@github.com:HanjiGu000\/FRE7831_TeamProject.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4A55DA5209A8B34D08EAC4DDF4293A30FF65C26B"
+    }
+  ]
+}
