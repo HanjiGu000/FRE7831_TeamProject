@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>25C035CD-72DA-439C-93A5-762F83B08B47</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>25C035CD-72DA-439C-93A5-762F83B08B47.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Team_Project project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Team_Project</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Team_Project</string>
+			<key>timeStartedRecording</key>
+			<real>672106393.44613504</real>
+			<key>timeStoppedRecording</key>
+			<real>672106399.49069798</real>
+			<key>title</key>
+			<string>Run Team_Project</string>
+			<key>uniqueIdentifier</key>
+			<string>25C035CD-72DA-439C-93A5-762F83B08B47</string>
+		</dict>
+		<key>DBE7EA31-5929-4FB3-81F7-3D3D1C13F1AC</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>DBE7EA31-5929-4FB3-81F7-3D3D1C13F1AC.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Team_Project project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Team_Project</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Run Team_Project</string>
+			<key>timeStartedRecording</key>
+			<real>672106241.79191506</real>
+			<key>timeStoppedRecording</key>
+			<real>672106246.10243404</real>
+			<key>title</key>
+			<string>Run Team_Project</string>
+			<key>uniqueIdentifier</key>
+			<string>DBE7EA31-5929-4FB3-81F7-3D3D1C13F1AC</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
