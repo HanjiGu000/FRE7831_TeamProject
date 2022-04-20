@@ -12,6 +12,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <utility>
+#include <map>
 
 using namespace std;
 
@@ -82,16 +84,86 @@ public:
         return trades;
     }
     
-    friend ostream & operator<<(ostream & ostr, Stock & stock)
-    {
-        ostr << "Symbol: " << stock.sSymbol << endl;
-        for (vector<TradeData>::const_iterator itr = stock.trades.begin(); itr != stock.trades.end(); itr ++)
-        {
-            ostr << *itr;
-        }
-        return ostr;
-    }
+//    friend ostream & operator<<(ostream & ostr, Stock & stock)
+//    {
+//        ostr << "Symbol: " << stock.sSymbol << endl;
+//        for (vector<TradeData>::const_iterator itr = stock.trades.begin(); itr != stock.trades.end(); itr ++)
+//        {
+//            ostr << *itr;
+//        }
+//        return ostr;
+//    }
+};
 
+
+struct PairPrice
+{
+    double dOpen1;
+    double dClose1;
+    
+    double dOpen2;
+    double dClose2;
+    
+    double dProfit_Loss;
+    
+    PairPrice(): dOpen1(0), dClose1(0), dOpen2(0), dClose2(0), dProfit_Loss(0) {}
+    PairPrice(double dOpen1_, double dClose1_, double dOpen2_, double dClose2_):
+        dOpen1(dOpen1_), dClose1(dClose1_), dOpen2(dOpen2_), dClose2(dClose2_) {}
+};
+
+
+class StockPairPrices
+{
+private:
+    pair<string, string> stockPair;
+    double volatility;
+    double k;
+    map<string, PairPrice> dailyPairPrices;
+public:
+    StockPairPrices()
+    {
+        volatility = 0;
+        k = 0;
+    }
+    StockPairPrices(pair<string, string> stockPair_)
+    {
+        stockPair = stockPair_;
+        volatility = 0;
+        k = 0;
+    }
+    void SetDailyPairPrice(string sDate_, PairPrice pairPrice_)
+    {
+        dailyPairPrices.insert(pair<string, PairPrice>(sDate_, pairPrice_));
+    }
+    void SetVolatility(double volatility_)
+    {
+        volatility = volatility_;
+    }
+    void SetK(double k_)
+    {
+        k = k_;
+    }
+    void UpdateProfitLoss(string sDate_, double dProfitLoss_)
+    {
+        dailyPairPrices[sDate_].dProfit_Loss = dProfitLoss_;
+    }
+    
+    pair<string, string> GetStockPair() const
+    {
+        return stockPair;
+    }
+    map<string, PairPrice> GetDailyPrices() const
+    {
+        return dailyPairPrices;
+    }
+    double GetVolatility() const
+    {
+        return volatility;
+    }
+    double GetK() const
+    {
+        return k;
+    }
 };
 
 
