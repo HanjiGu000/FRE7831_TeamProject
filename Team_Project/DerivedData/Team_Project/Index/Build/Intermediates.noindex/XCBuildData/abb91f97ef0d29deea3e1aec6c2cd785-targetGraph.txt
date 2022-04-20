@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Team_Project in Team_Project, no dependencies
