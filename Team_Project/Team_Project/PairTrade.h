@@ -39,6 +39,15 @@ public:
                 sDate(TradeData.sDate), dOpen(TradeData.dOpen), dHigh(TradeData.dHigh),
                 dLow(TradeData.dLow), dClose(TradeData.dClose), dAdjClose(TradeData.dAdjClose),
                 lVolume(TradeData.lVolume) {}
+    
+    string GetDate() const { return sDate; }
+    double GetOpen() const {  return dOpen; }
+    double GetHigh() const   {  return dHigh; }
+    double GetLow() const   {  return dLow;  }
+    double GetClose() const {  return dClose; }
+    double GetAdjustedClose() const {  return dAdjClose;  }
+    long GetVolume() const {  return lVolume; }
+    
     TradeData operator=(const TradeData & TradeData)
     {
         sDate = TradeData.sDate;
@@ -60,6 +69,7 @@ private:
     vector<TradeData> trades;
 public:
     Stock(): sSymbol("") {}
+    Stock(string sSymbol_): sSymbol(sSymbol_) {}
     Stock(string sSymbol_, const vector<TradeData> trades_):
             sSymbol(sSymbol_), trades(trades_) {}
     Stock(const Stock & stock):
