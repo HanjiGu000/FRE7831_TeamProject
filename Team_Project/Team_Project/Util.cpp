@@ -40,3 +40,34 @@ vector<pair<string, string>> GetPairs(string input_file)
     }
     return pair_map;
 }
+
+
+map<string, string> ProcessConfigData(string config_file)
+{
+    map<string, string> config_map;
+    ifstream fin;
+    fin.open(config_file, ios::in);
+    string line, name, value;
+    while (!fin.eof())
+    {
+        getline(fin, line);
+        // std::remove: Transforms the range [first,last) into a range with all the elements
+        // that compare equal to val removed, and returns an iterator to the new
+        // end of that range.
+        // string::erase: Erases part of the string, reducing its length
+        line.erase(remove(line.begin(), line.end(), '\r'), line.end());
+        stringstream sin(line);
+        getline(sin, name, ':');
+        getline(sin, value);
+        cout << value << endl;
+        config_map.insert(pair<string, string>(name, value));
+    }
+    return config_map;
+}
+
+
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp)
+{
+    ((string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}

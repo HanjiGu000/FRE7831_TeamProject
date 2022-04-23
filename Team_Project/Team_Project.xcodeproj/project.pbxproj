@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E4B9B1D281492E000C559C5 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4B9B1C281492E000C559C5 /* jsoncpp.cpp */; };
 		3E64900D280F8ACB00F1B017 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E64900C280F8ACB00F1B017 /* main.cpp */; };
 		3E86E8CF28146967007480D1 /* Database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E86E8CE28146967007480D1 /* Database.cpp */; };
 		3E86E8D228146E99007480D1 /* Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E86E8D028146E99007480D1 /* Util.cpp */; };
+		3E86E8D52814864E007480D1 /* MarketData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E86E8D32814864E007480D1 /* MarketData.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E4B9B1C281492E000C559C5 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		3E649009280F8ACB00F1B017 /* Team_Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Team_Project; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E64900C280F8ACB00F1B017 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3E649013280F8AE500F1B017 /* PairTrade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PairTrade.h; sourceTree = "<group>"; };
@@ -32,6 +35,9 @@
 		3E86E8CE28146967007480D1 /* Database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Database.cpp; sourceTree = "<group>"; };
 		3E86E8D028146E99007480D1 /* Util.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Util.cpp; sourceTree = "<group>"; };
 		3E86E8D128146E99007480D1 /* Util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Util.hpp; sourceTree = "<group>"; };
+		3E86E8D32814864E007480D1 /* MarketData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MarketData.cpp; sourceTree = "<group>"; };
+		3E86E8D42814864E007480D1 /* MarketData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketData.h; sourceTree = "<group>"; };
+		3E86E8D628148680007480D1 /* json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,10 @@
 			isa = PBXGroup;
 			children = (
 				3E64900C280F8ACB00F1B017 /* main.cpp */,
+				3E4B9B1C281492E000C559C5 /* jsoncpp.cpp */,
+				3E86E8D32814864E007480D1 /* MarketData.cpp */,
+				3E86E8D628148680007480D1 /* json */,
+				3E86E8D42814864E007480D1 /* MarketData.h */,
 				3E86E8CE28146967007480D1 /* Database.cpp */,
 				3E86E8CD28146967007480D1 /* Database.h */,
 				3E649013280F8AE500F1B017 /* PairTrade.h */,
@@ -131,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E4B9B1D281492E000C559C5 /* jsoncpp.cpp in Sources */,
 				3E86E8D228146E99007480D1 /* Util.cpp in Sources */,
+				3E86E8D52814864E007480D1 /* MarketData.cpp in Sources */,
 				3E86E8CF28146967007480D1 /* Database.cpp in Sources */,
 				3E64900D280F8ACB00F1B017 /* main.cpp in Sources */,
 			);
