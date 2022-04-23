@@ -59,9 +59,9 @@ int main(int argc, const char * argv[]) {
                 cout << "Creating StockPairs table" << endl;
                 string sql_CreateTable = string("CREATE TABLE IF NOT EXISTS StockPairs ")
                                                 + "(id INT NOT NULL,"
-                                                + "Symbol1 CHAR(20) NOT NULL,"
-                                                + "Symbol2 CHAR(20) NOT NULL,"
-                                                + "Volatility FLOAT NOT NULL,"
+                                                + "symbol1 CHAR(20) NOT NULL,"
+                                                + "symbol2 CHAR(20) NOT NULL,"
+                                                + "volatility FLOAT NOT NULL,"
                                                 + "profit_loss FLOAT NOT NULL,"
                                                 + "PRIMARY KEY(Symbol1, Symbol2)"
                                                 + ");";
@@ -275,12 +275,70 @@ int main(int argc, const char * argv[]) {
                 
                 break;
             }
-            case 'C': {
+
+            case 'C': { // Create PairPrices Table --- sql statement
+                string sql_DropTable = "DROP TABLE IF EXISTS PairPrices";
+                if (DropTable(db, sql_DropTable.c_str()) == -1)
+                    return -1;
+                
+                string sql_CreateTable = string("CREATE TABLE IF NOT EXISTS PairPrices")
+                    + "(symbol1 CHAR(20) NOT NULL,"
+                    + "symbol2 CHAR(20) NOT NULL,"
+                    + "date CHAR(20) NOT NULL,"
+                    + "open1 REAL NOT NULL,"
+                    + "close1 REAL NOT NULL,"
+                    + "adjusted_close1 REAL NOT NULL,"
+                    + "open2 REAL NOT NULL,"
+                    + "close2 REAL NOT NULL,"
+                    + "adjusted_close2 REAL NOT NULL,"
+                    + "profit_loss FLOAT NOT NULL,"
+                    + "PRIMARY KEY(symbol1, symbol2, date)"
+//                    + ", Foreign Key(symbol1, symbol2, date) references (PairOnePrices(symbol), PairTwoPrices(symbol, date))\n"
+                    + ");";
+                
+                if (ExecuteSQL(db, sql_CreateTable.c_str()) == -1)
+                    return -1;
+                cout << "Created PairPrices table" << endl;
+                
+                
+                string sql_Insert = string("Insert into PairPrices ")
+                    + "SELECT StockPairs.symbol1 AS symbol1, "
+                            + "StockPairs.symbol2 AS symbol2, "
+                            + "PairOnePrices.date AS date, "
+                            + "PairOnePrices.open AS open1, PairOnePrices.close AS close1, "
+                            + "PairOnePrices.adjusted_close AS adjusted_close1, "
+                            + "PairTwoPrices.open AS open2, PairTwoPrices.close AS close2, "
+                            + "PairTwoPrices.adjusted_close AS adjusted_close2, "
+                            + "0.0 AS profit_loss "
+                    + "FROM StockPairs, PairOnePrices, PairTwoPrices "
+                    + "WHERE ((StockPairs.symbol1=PairOnePrices.symbol) AND "
+                            + "(StockPairs.symbol2=PairTwoPrices.symbol) AND "
+                            + "(PairOnePrices.date=PairTwoPrices.date)) "
+                    + "ORDER By symbol1, symbol2;";
+                
+                if (ExecuteSQL(db, sql_Insert.c_str()) == -1)
+                    return -1;
+                
+                cout << "Inserted data into PairPrices table" << endl;
+                
                 break;
             }
-            case 'D': {
+                
+            case 'D': { // calculate volatility
+                string calculate_volatility_for_pair =  string("Update StockPairs SET volatility = ")
+                    + "(SELECT(AVG((adjusted_close1/adjusted_close2) * (adjusted_close1/adjusted_close2)) "
+                    + "- AVG(adjusted_close1/adjusted_close2) * AVG(adjusted_close1/adjusted_close2)) as variance "
+                    + "FROM PairPrices "
+                    + "WHERE StockPairs.symbol1 = PairPrices.symbol1 AND StockPairs.symbol2 = PairPrices.symbol2 AND "
+                + "PairPrices.date <= \'back_test_start_date\');";
+                
+                if (ExecuteSQL(db, calculate_volatility_for_pair.c_str()) == -1)
+                    return -1;
+                cout << "Calculated volatility for PairPrices table" << endl;
+                
                 break;
             }
+
             case 'E': {
                 break;
             }
