@@ -71,3 +71,21 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp)
     ((string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
 }
+
+
+string GetCurrentDate()
+{
+    time_t rawtime;
+    struct tm * timeinfo;
+    char buffer[80];
+
+    time (&rawtime);
+    timeinfo = localtime(&rawtime);
+
+    strftime(buffer, 80, "%Y-%m-%d", timeinfo);
+    string str(buffer);
+
+    cout << str << endl;;
+
+    return str;
+}
