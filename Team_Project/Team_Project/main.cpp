@@ -160,7 +160,8 @@ int main(int argc, const char * argv[]) {
                 
                 string daily_url_common = config_map["daily_url_common"];
                 string start_date = config_map["start_date"];
-                string end_date = config_map["end_date"];
+//                string end_date = config_map["end_date"];
+                string end_date = GetCurrentDate();
                 string api_token = config_map["api_token"];
                 
                 for (vector<string>::iterator itr = pair_one_vec.begin(); itr != pair_one_vec.end(); itr++)
@@ -325,6 +326,8 @@ int main(int argc, const char * argv[]) {
             }
                 
             case 'D': { // calculate volatility
+                string back_test_start_date = "2022-01-01";
+                
                 string calculate_volatility_for_pair =  string("Update StockPairs SET volatility = ")
                     + "(SELECT(AVG((adjusted_close1/adjusted_close2) * (adjusted_close1/adjusted_close2)) "
                     + "- AVG(adjusted_close1/adjusted_close2) * AVG(adjusted_close1/adjusted_close2)) as variance "
@@ -340,8 +343,36 @@ int main(int argc, const char * argv[]) {
             }
 
             case 'E': {
+                string sql_Update = string("UPDATE PairPrices ")
+                    + "SET profit_loss = tttt.position "
+                    + "FROM "
+                        + "(SELECT IIF(ABS((Close1d1/Close2d1) - (Open1d2/Open2d2)) >= volatility, -10000*(Close1d2-Open1d2)+10000*(Open1d2/Open2d2)*(Close2d2-Open2d2), 10000*(Close1d2-Open1d2)-10000*(Open1d2/Open2d2)*(Close2d2-Open2d2)) AS position, "
+                                + "symbol1 AS Symbol1, symbol2 AS Symbol2, date AS date "
+                        + "FROM "
+                            + "(SELECT pp.symbol1 AS symbol1, pp.symbol2 AS symbol2, "
+                                     + "pp.close1 AS Close1d2, pp.close2 AS Close2d2, "
+                                     + "pp.open1 AS Open1d2, pp.open2 AS Open2d2, "
+                                     + "Lag(pp.close1, 1) OVER() AS Close1d1, Lag(pp.close2, 1) OVER() AS Close2d1, "
+                                     + "sp.volatility AS volatility, "
+                                     + "pp.date "
+                              + "FROM PairPrices pp, StockPairs sp "
+                              + "WHERE pp.date >= \"2022-01-01\" "
+                              + "AND pp.symbol1 = sp.symbol1 "
+                              + "AND pp.symbol2 = sp.symbol2) "
+                        + "WHERE date <= \"2022-04-21\" "
+                        + "AND date > \"2022-01-03\") tttt "
+                    + "WHERE "
+                        + "(PairPrices.symbol1 = tttt.Symbol1 "
+                        + "AND PairPrices.symbol2 = tttt.Symbol2 "
+                        + "AND PairPrices.date = tttt.date)";
+                
+                if (ExecuteSQL(db, sql_Update.c_str()) == -1)
+                    return -1;
+                
+                cout << "Calculated daily profit and loss for back testing. " << endl;
                 break;
             }
+
             case 'F': {
                 break;
             }
