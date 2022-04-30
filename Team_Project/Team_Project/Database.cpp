@@ -100,6 +100,33 @@ int ShowTable(sqlite3* db, const char* sql_stmt)
 	return 0;
 }
 
+double GetSingleVolatility(sqlite3* db, const char* sql_stmt){
+    int rc = 0;
+    char* error = nullptr;
+    char** results = NULL;
+    int rows, columns;
+    double result;
+    
+    rc = sqlite3_get_table(db, sql_stmt, &results, &rows, &columns, &error);
+    if (rc)
+    {
+        std::cerr << "Error executing SQLite3 query: " << sqlite3_errmsg(db) << std::endl << std::endl;
+        sqlite3_free(error);
+        return -1.0;
+    }
+    else if (results[1] == NULL)
+    {
+        std::cout << "Did not fetch volatility" << std::endl;
+        return -1.0;
+    }
+    else
+    {
+        std::string temp(results[1]);
+        result = std::stod(temp);
+    }
+    return result;
+}
+
 void CloseDatabase(sqlite3* db)
 {
 	sqlite3_close(db);

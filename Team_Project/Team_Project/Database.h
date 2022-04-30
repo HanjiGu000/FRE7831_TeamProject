@@ -9,4 +9,6 @@ int ExecuteSQL(sqlite3* db, const char* sql_stmt);
 
 int ShowTable(sqlite3* db, const char* sql_stmt);
 
+double GetSingleVolatility(sqlite3* db, const char* sql_stmt);
+
 void CloseDatabase(sqlite3* db);
