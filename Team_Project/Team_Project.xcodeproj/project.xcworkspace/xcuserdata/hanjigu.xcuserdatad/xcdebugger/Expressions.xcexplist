@@ -3,6 +3,23 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "GetSingleVolatility(sqlite3*, char const*):Database.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "results">
+            </PersistentString>
+            <PersistentString
+               value = "results[0]">
+            </PersistentString>
+            <PersistentString
+               value = "results[1]">
+            </PersistentString>
+            <PersistentString
+               value = "rc">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "main:main.cpp">
          <PersistentStrings>
             <PersistentString
