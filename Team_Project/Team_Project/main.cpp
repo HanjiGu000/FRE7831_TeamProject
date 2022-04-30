@@ -374,8 +374,23 @@ int main(int argc, const char * argv[]) {
             }
 
             case 'F': {
+                string sql_Update = string("UPDATE StockPairs ")
+                                         + "SET profit_loss = yyy.pnl "
+                                         + "FROM "
+                                            + "(SELECT SUM(pp.profit_loss) AS pnl, pp.symbol1 AS symbol1, pp.symbol2 AS symbol2 "
+                                            + "FROM PairPrices pp "
+                                            + "WHERE pp.date >= '2022' "
+                                            + "GROUP BY pp.symbol1, pp.symbol2) yyy "
+                                         + "WHERE "
+                                            + "(yyy.symbol1 = StockPairs.symbol1 AND yyy.symbol2 = StockPairs.symbol2)";
+                
+                if (ExecuteSQL(db, sql_Update.c_str()) == -1)
+                    return -1;
+                
+                cout << "Calculated aggregated PNL to StockPairs. " << endl;
                 break;
             }
+
             case 'G': {
                 break;
             }
