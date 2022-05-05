@@ -542,8 +542,7 @@ int main(int argc, const char * argv[]) {
                 break;
             }
 
-            case 'I':
-            {
+            case 'I': {
                 cout << "Current K: " << K_ << endl;
                 cout << "User choice of K: ";
                 cin >> K_;
